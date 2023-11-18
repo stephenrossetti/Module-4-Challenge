@@ -1,7 +1,13 @@
 let timeEl = document.getElementById("timer");
+let startButton = document.querySelector("#startButton");
+
+
+function startGame() {
+  countDown ();
+}
 
 function countDown() {
-    let timeLeft = 10;
+    let timeLeft = 100;
     var timerInterval = setInterval(function() {
         timeLeft--;
         timeEl.textContent = "Time Remaining: " + timeLeft + "s";
@@ -9,10 +15,16 @@ function countDown() {
           clearInterval(timerInterval);
           sendMessage();
         }
-      }, 1000);
-    }
+    }, 1000);
+}
+
 function sendMessage() {
         timeEl.textContent = "Times Up!";
-      }
-countDown ();
+}
+
+startButton.addEventListener("click", startGame);
+
+
+
+
 
