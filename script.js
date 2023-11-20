@@ -13,7 +13,7 @@ function homePage () {
 homePage ();
 
 function startGame() {
-  hideHome ();
+  hideHomePage ();
   countDown ();
   questionContainerEl.style.display = "";
   shuffledQuestions = questionArray.sort(() => Math.random() - 0.5);
@@ -37,7 +37,7 @@ function sendMessage() {
         timeEl.textContent = "Times Up!";
 }
 
-function hideHome () {
+function hideHomePage () {
   image.style.display = "none";
   startButton.style.display = "none";
 }
@@ -53,10 +53,6 @@ function showQuestion (question) {
     let button = document.createElement('button');
     button.innerText = answer.text;
     button.classList.add('btn');
-    if (answer.correct) { 
-      button.dataset.correct = answer.correct
-    }
-    button.addEventListener("click",selectAnswer);
     answersEl.appendChild(button);
   })
 }
