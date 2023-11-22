@@ -1,6 +1,7 @@
 let timeEl = document.getElementById("timer");
 let startButton = document.getElementById("startButton");
 let nextButton = document.getElementById("nextButton");
+let backButton = document.getElementById("backButton");
 let image = document.querySelector(".img")
 let questionContainerEl = document.getElementById("questionContainer");
 let questionEl = document.getElementById("question");
@@ -48,10 +49,6 @@ function countDown() {
     }, 1000);
 }
 
-function sendMessage() {
-        timeEl.textContent = "Times Up!";
-}
-
 function inputQuestion () {
   hidePreviousQuestion();
   showQuestion(shuffledQuestions[currentQuestionIndex]);
@@ -73,6 +70,7 @@ function showQuestion (question) {
 }
 
 function hidePreviousQuestion () {
+  backButton.style.display = "none";
   nextButton.style.display = "none";
   scoreContainer.style.display = "none";
   while(answersEl.firstChild) {
@@ -89,6 +87,7 @@ function selectAnswer (e) {
     answerClicked.classList.add("incorrect");
     timeLeft -= 15;
   }
+  nextButton.innerText = "Next";
   nextButton.style.display = "block";
 }
 
@@ -113,6 +112,7 @@ function highScore () {
   hidePreviousQuestion ();
   questionEl.innerText = "Congratulations! You scored " + (timeLeft-1) + " Points!";
   scoreContainer.style.display = "block";
+  scoreForm.style.display = "block";
   nextButton.innerText = "Play Again";
   nextButton.style.display = "block";
 }
@@ -165,6 +165,7 @@ function renderScores() {
     li.textContent = score;
     li.setAttribute("data-index", j);
     scoreList.appendChild(li);
+    highScoreBtn.style.display = "block";
   }
 }
 
@@ -181,6 +182,10 @@ function storeScores() {
   localStorage.setItem("scores", JSON.stringify(scores));
 }
 
+function hideInputBox () {
+  scoreForm.style.display = "none";
+}
+
 scoreForm.addEventListener("submit", function(event) {
   event.preventDefault();
   let scoreText = scoreTextEl.value.trim();
@@ -193,6 +198,18 @@ scoreForm.addEventListener("submit", function(event) {
 
   storeScores();
   renderScores();
+  hideInputBox ();
 });
 
+highScoreBtn.addEventListener("click",getScores);
 
+function getScores () {
+  clearInterval(timeInterval);
+  questionEl.innerText = "Official Leaderboard:";
+  hidePreviousQuestion ();
+  hideInputBox ();
+  scoreContainer.style.display = "block";
+  backButton.style.display = "block";
+}
+
+backButton.addEventListener("click",startGame);

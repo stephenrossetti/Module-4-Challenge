@@ -20,6 +20,7 @@ nav {
     width: 20%;
     border-radius: 50px;
     font-size: 30px;
+    display: none;
 }
 
 #highscore:hover {
@@ -123,7 +124,7 @@ img {
     border-radius: 50px;
 }
 
-#nextButton {
+#nextButton, #backButton {
     cursor: pointer;
     background-color: grey;
     color: white;
@@ -138,7 +139,7 @@ img {
     display: none;
 }
 
-.btn:hover, #startButton:hover, #nextButton:hover {
+.btn:hover, #startButton:hover, #nextButton:hover, #backButton:hover {
     background-color: rgb(191, 152, 219);
 }
 
