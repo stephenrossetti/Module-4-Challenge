@@ -13,9 +13,18 @@ nav {
     padding: 2%;
 }
 
+#highscore {
+    cursor: pointer;
+    background-color: indigo;
+    color: white;
+    width: 20%;
+    border-radius: 50px;
+    font-size: 30px;
+}
+
 #highscore:hover {
     color:white;
-    text-shadow: 0 0 5px indigo;
+    text-shadow: 0 0 5px white;
     cursor: pointer;
 }
 
@@ -79,6 +88,10 @@ img {
     border-radius: 50px;
 }
 
+#questionContainer {
+    display: none;
+}
+
 #question {
     color: white;
     width: 100%;
@@ -100,6 +113,29 @@ img {
     border-radius: 50px;
 }
 
-.btn:hover, #startButton:hover {
+#nextButton {
+    cursor: pointer;
+    background-color: grey;
+    color: white;
+    width: 20%;
+    border: 100 white;
+    padding: 1%;
+    margin: 1% 0%;
+    text-align: center;
+    border-radius: 50px;
+    position: relative;
+    left: 37%;
+    display: none;
+}
+
+.btn:hover, #startButton:hover, #nextButton:hover {
     background-color: rgb(191, 152, 219);
+}
+
+.correct{
+    background: rgb(151, 245, 142);
+}
+
+.incorrect{
+    background: rgb(245, 142, 142);
 }
