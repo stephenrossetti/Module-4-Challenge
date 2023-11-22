@@ -11,6 +11,11 @@ let timeLeft;
 let timeInterval;
 let currentQuestionIndex;
 let shuffledQuestions;
+let scoreForm = document.getElementById("scoreForm");
+let scoreTextEl = document.getElementById("scoreText");
+let scoreList = document.getElementById("scoreList");
+let scoreContainer = document.getElementById("highScoreFormat");
+let scores = [];
 
 function hideHomePage () {
   image.style.display = "none";
@@ -69,6 +74,7 @@ function showQuestion (question) {
 
 function hidePreviousQuestion () {
   nextButton.style.display = "none";
+  scoreContainer.style.display = "none";
   while(answersEl.firstChild) {
     answersEl.removeChild(answersEl.firstChild);
   }
@@ -106,6 +112,7 @@ function nextQuestion () {
 function highScore () {
   hidePreviousQuestion ();
   questionEl.innerText = "Congratulations! You scored " + (timeLeft-1) + " Points!";
+  scoreContainer.style.display = "block";
   nextButton.innerText = "Play Again";
   nextButton.style.display = "block";
 }
@@ -150,6 +157,42 @@ let questionArray = [
   ] },
 ];
 
+function renderScores() {
+  scoreList.innerHTML = "";
+  for (let j = 0; j < scores.length; j++) {
+    let score = scores[j];
+    let li = document.createElement("li");
+    li.textContent = score;
+    li.setAttribute("data-index", j);
+    scoreList.appendChild(li);
+  }
+}
 
+function init() {
+  let storedScores = JSON.parse(localStorage.getItem("scores"));
+  if (storedScores !== null) {
+    scores = storedScores;
+  }
+
+  renderScores();
+}
+
+function storeScores() {
+  localStorage.setItem("scores", JSON.stringify(scores));
+}
+
+scoreForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+  let scoreText = scoreTextEl.value.trim();
+  if (scoreText === "") {
+    return;
+  }
+
+  scores.push(scoreText);
+  scoreTextEl.value = "";
+
+  storeScores();
+  renderScores();
+});
 
 
