@@ -1,37 +1,37 @@
 let timeEl = document.getElementById("timer");
-let startButton = document.getElementById("startButton");
-let nextButton = document.getElementById("nextButton");
-let backButton = document.getElementById("backButton");
+let startBtn = document.getElementById("startBtn");
+let nextBtn = document.getElementById("nextBtn");
+let backBtn = document.getElementById("backBtn");
 let image = document.querySelector(".img")
 let questionContainerEl = document.getElementById("questionContainer");
 let questionEl = document.getElementById("question");
 let answersEl = document.getElementById("answers");
 let answerBtn = document.getElementById("btn");
-let highScoreBtn = document.getElementById("highscore")
+let highScoreBtn = document.getElementById("highScore")
 let timeLeft;
 let timeInterval;
 let currentQuestionIndex;
 let shuffledQuestions;
-let scoreForm = document.getElementById("scoreForm");
-let scoreTextEl = document.getElementById("scoreText");
-let scoreList = document.getElementById("scoreList");
-let scoreContainer = document.getElementById("highScoreFormat");
+let nameForm = document.getElementById("nameForm");
+let nameTextEl = document.getElementById("nameText");
+let nameList = document.getElementById("nameList");
+let nameContainer = document.getElementById("nameContainer");
+let nameFormat = document.getElementById("nameFormat");
 let leaderBoard = document.getElementById("leaderboard");
-let scores = [];
+let names = [];
 
 function hideHomePage () {
   image.style.display = "none";
-  startButton.style.display = "none";
+  startBtn.style.display = "none";
 }
 
 function startGame() {
-  timeLeft = 100;
-  hideHomePage ();
-  countDown ();
-  questionContainerEl.style.display = "block";
+  timeLeft = 101;
   shuffledQuestions = questionArray.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
-  inputQuestion ();
+  hideHomePage ();
+  showQuestion ();
+  countDown ();
 }
 
 function countDown() {
@@ -43,20 +43,20 @@ function countDown() {
         } 
         else if (timeLeft <= 0) {
           clearInterval(timeInterval);
-          timeLeft = 0;
+          timeLeft = 1;
           alert("Times Up!");
-          location.reload();
+          highScore ();
         }
     }, 1000);
 }
 
-function inputQuestion () {
+function showQuestion () {
+  questionContainerEl.style.display = "block";
   hidePreviousQuestion();
-  showQuestion(shuffledQuestions[currentQuestionIndex]);
+  inputQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
-function showQuestion (question) {
-  hidePreviousQuestion();
+function inputQuestion (question) {
   questionEl.innerText = question.question;
   question.answers.forEach(answer => {
     let button = document.createElement('button');
@@ -71,9 +71,9 @@ function showQuestion (question) {
 }
 
 function hidePreviousQuestion () {
-  backButton.style.display = "none";
-  nextButton.style.display = "none";
-  scoreContainer.style.display = "none";
+  backBtn.style.display = "none";
+  nextBtn.style.display = "none";
+  nameContainer.style.display = "none";
   while(answersEl.firstChild) {
     answersEl.removeChild(answersEl.firstChild);
   }
@@ -88,11 +88,11 @@ function selectAnswer (e) {
     answerClicked.classList.add("incorrect");
     timeLeft -= 15;
   }
-  nextButton.innerText = "Next";
-  nextButton.style.display = "block";
+  nextBtn.innerText = "Next";
+  nextBtn.style.display = "block";
 }
 
-nextButton.addEventListener("click", ()=>{
+nextBtn.addEventListener("click", ()=>{
   if(currentQuestionIndex < questionArray.length) {
   nextQuestion();
   } else {
@@ -103,7 +103,7 @@ nextButton.addEventListener("click", ()=>{
 function nextQuestion () {
   currentQuestionIndex++;
   if (currentQuestionIndex < questionArray.length) {
-    inputQuestion();
+    showQuestion();
   } else {
     highScore ();
   }
@@ -112,13 +112,12 @@ function nextQuestion () {
 function highScore () {
   hidePreviousQuestion ();
   questionEl.innerText = "Congratulations! You scored " + (timeLeft-1) + " Points!";
-  scoreContainer.style.display = "block";
-  scoreForm.style.display = "block";
-  nextButton.innerText = "Play Again";
-  nextButton.style.display = "block";
+  formPage ();
+  nextBtn.innerText = "Play Again";
+  nextBtn.style.display = "block";
 }
 
-startButton.addEventListener("click", startGame);
+startBtn.addEventListener("click", startGame);
 
 let questionArray = [
   { question: "Who is the greatest football player?",
@@ -158,47 +157,46 @@ let questionArray = [
   ] },
 ];
 
-function renderScores() {
-  scoreList.innerHTML = "";
-  for (let j = 0; j < scores.length; j++) {
-    let score = scores[j];
+function renderNames () {
+  nameList.innerHTML = "";
+  for (let j = 0; j < names.length; j++) {
+    let name = names[j];
     let li = document.createElement("li");
-    li.textContent = score;
+    li.textContent = name + " - " + timeLeft + "s";
     li.setAttribute("data-index", j);
-    scoreList.appendChild(li);
+    nameList.appendChild(li);
     highScoreBtn.style.display = "block";
   }
 }
 
 function init() {
-  let storedScores = JSON.parse(localStorage.getItem("scores"));
-  if (storedScores !== null) {
-    scores = storedScores;
+  let storedNames = JSON.parse(localStorage.getItem("names"));
+  if (storedNames !== null) {
+    names = storedNames;
   }
-
-  renderScores();
+  renderNames ();
 }
 
-function storeScores() {
-  localStorage.setItem("scores", JSON.stringify(scores));
+function storeNames () {
+  localStorage.setItem("names", JSON.stringify(names));
 }
 
 function hideInputBox () {
-  scoreForm.style.display = "none";
+  nameForm.style.display = "none";
 }
 
-scoreForm.addEventListener("submit", function(event) {
+nameForm.addEventListener("submit", function(event) {
   event.preventDefault();
-  let scoreText = scoreTextEl.value.trim();
-  if (scoreText === "") {
+  let nameText = nameTextEl.value.trim();
+  if (nameText === "") {
     return;
   }
 
-  scores.push(scoreText);
-  scoreTextEl.value = "";
+  names.push(nameText);
+  nameTextEl.value = "";
 
-  storeScores();
-  renderScores();
+  storeNames ();
+  renderNames ();
   hideInputBox ();
 });
 
@@ -206,11 +204,19 @@ highScoreBtn.addEventListener("click",getScores);
 
 function getScores () {
   clearInterval(timeInterval);
-  hidePreviousQuestion ();
-  hideInputBox ();
-  questionEl.style.display = "none";
-  scoreContainer.style.display = "block";
-  backButton.style.display = "block";
+  hideHomePage ();
+  formPage ();
+  questionContainerEl.style.display = "none";
+  nameForm.style.display = "none";
+  backBtn.style.display = "block";
 }
 
-backButton.addEventListener("click",startGame);
+function formPage () {
+  nameContainer.style.display = "block";
+  nameForm.style.display = "block";
+  nameFormat.style.display = "block";
+  nameTextEl.style.display = "block";
+}
+
+backBtn.addEventListener("click",startGame);
+

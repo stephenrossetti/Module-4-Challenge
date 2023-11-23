@@ -13,21 +13,6 @@ nav {
     padding: 2%;
 }
 
-#highscore {
-    cursor: pointer;
-    background-color: indigo;
-    color: white;
-    width: 20%;
-    border-radius: 50px;
-    font-size: 30px;
-}
-
-#highscore:hover {
-    color:white;
-    text-shadow: 0 0 5px white;
-    cursor: pointer;
-}
-
 body {
     background: grey;
 }
@@ -38,29 +23,16 @@ main{
     flex-direction: column;
 }
 
-#title {
-    background: white;
-    color: indigo;
-    display: flex;
-    width: 80%;
-    margin: 2% auto;
-    padding: 1%;
-    border-radius: 50px;
-    font-size: 50px;
-    justify-content: center;
-    border: 10px indigo;
-    border-style: solid;
-}
-
-#startButton {
-    cursor: pointer;
-    background-color: white;
-    color: indigo;
+section.img {
     width: 40%;
-    padding: 1%;
+}
+    
+img {
+    width: 100%;
+    border: 5px white;
+    border-style: solid;
     border-radius: 50px;
-    font-size: 30px;
-  }
+}
 
 section {
     background: indigo;
@@ -77,28 +49,56 @@ section {
     flex-direction: column;
 }
 
-section.img {
-width: 40%;
-}
-
-img {
-    width: 100%;
-    border: 5px white;
-    border-style: solid;
+#highScore {
+    cursor: pointer;
+    background-color: indigo;
+    color: white;
+    width: 20%;
     border-radius: 50px;
+    font-size: 30px;
 }
 
-#highScoreFormat {
+#highScore:hover {
+    color:white;
+    text-shadow: 0 0 5px white;
+    cursor: pointer;
+}
+
+#title {
+    background: white;
+    color: indigo;
+    display: flex;
+    width: 80%;
+    margin: 2% auto;
+    padding: 1%;
+    border-radius: 50px;
+    font-size: 50px;
+    justify-content: center;
+    border: 10px indigo;
+    border-style: solid;
+}
+
+#startBtn {
+    cursor: pointer;
+    background-color: white;
+    color: indigo;
+    width: 40%;
+    padding: 1%;
+    border-radius: 50px;
+    font-size: 30px;
+}
+
+#nameFormat {
     display: flex;
     flex-direction: column;
     align-items: left;
 }
 
-#questionContainer {
+#questionContainer, #nameContainer {
     display: none;
 }
 
-#highScoreFormat {
+#nameFormat {
     display: none;
 }
 
@@ -110,20 +110,7 @@ img {
     text-align: left;
 }
 
-
-.btn {
-    cursor: pointer;
-    background-color: white;
-    color: indigo;
-    width: 100%;
-    border: 100 white;
-    padding: 1%;
-    margin: 1% 0%;
-    text-align: left;
-    border-radius: 50px;
-}
-
-#nextButton, #backButton {
+#nextBtn, #backBtn {
     cursor: pointer;
     background-color: grey;
     color: white;
@@ -138,7 +125,19 @@ img {
     display: none;
 }
 
-.btn:hover, #startButton:hover, #nextButton:hover, #backButton:hover {
+.btn {
+    cursor: pointer;
+    background-color: white;
+    color: indigo;
+    width: 100%;
+    border: 100 white;
+    padding: 1%;
+    margin: 1% 0%;
+    text-align: left;
+    border-radius: 50px;
+}
+
+.btn:hover, #startBtn:hover, #nextBtn:hover, #backBtn:hover {
     background-color: rgb(191, 152, 219);
 }
 

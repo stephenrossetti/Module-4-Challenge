@@ -9,13 +9,13 @@
     <body>
         <header>
             <nav>
-                <button id="highscore">High Scores</button>
+                <button id="highScore">High Scores</button>
                 <p id="timer">Time Remaining: 100s</p>
             </nav>
         </header>
         <main>
             <h1 id="title">The G.O.A.T Quiz</h1>
-            <button id="startButton">Start</button>
+            <button id="startBtn">Start</button>
             <section class="img">
                 <img src="./assets/Brady.jpeg" id="startImg">
             </section>
@@ -27,18 +27,19 @@
                     <button class="btn">Answer 3</button>
                     <button class="btn">Answer 4</button>
                 </div>
-                <div id="highScoreFormat">
-                    <h2 id="leaderboard">Official Leaderboard: </h2>   
-                    <form id="scoreForm" method="POST">
-                    <label for="scoreText">Add a Your Initials: </label>
-                    <input type="text" placeholder="Initials" name="scoreText" id="scoreText" />
-                    </form>
-                    <p id="scoreList"></p>
-                </div>
-                <button id="nextButton">Next</button>  
-                <button id="backButton">Back to Quiz</button>
+                <button id="nextBtn">Next</button>  
             </section>
-
+            <section id="nameContainer">
+                <div id="nameFormat">
+                    <h2 id="leaderboard">Official Leaderboard: </h2>   
+                    <form id="nameForm" method="POST">
+                    <label for="nameText">Add a Your Initials: </label>
+                    <input type="text" placeholder="Initials" name="nameText" id="nameText" />
+                    </form>
+                    <p id="nameList"></p>
+                    <button id="backBtn">Back to Quiz</button>
+                </div>
+            </section>
         </main>
         <script src="./script.js"></script>
         <footer></footer>
