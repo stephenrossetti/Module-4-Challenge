@@ -10,7 +10,9 @@ Create new repository and start code from scratch.
 
 ## Mock-Up
 
-![alt text](https://github.com/stephenrossetti/Module-4-Challenge/blob/main/assets/Javascript.jpeg)
+![alt text](https://github.com/stephenrossetti/Module-4-Challenge/blob/main/assets/Mock-Up1.png)
+![alt text](https://github.com/stephenrossetti/Module-4-Challenge/blob/main/assets/Mock-Up2.png)
+![alt text](https://github.com/stephenrossetti/Module-4-Challenge/blob/main/assets/Mock-Up3.png)
 
 ## Usage
 
