@@ -41,9 +41,9 @@ function countDown() {
         if (currentQuestionIndex === 5) {
           clearInterval(timeInterval);
         } 
-        else if (timeLeft <= 1) {
+        else if (timeLeft <= 0) {
           clearInterval(timeInterval);
-          timeLeft = 1;
+          timeLeft = 0;
           alert("Times Up!");
           highScore ();
         }
@@ -111,7 +111,11 @@ function nextQuestion () {
 
 function highScore () {
   hidePreviousQuestion ();
+  if (timeLeft <= 0) {
+    questionEl.innerText = "Congratulations! You scored 0 Points!";
+  } else {
   questionEl.innerText = "Congratulations! You scored " + (timeLeft-1) + " Points!";
+  }
   formPage ();
   backBtn.style.display = "block";
 }
