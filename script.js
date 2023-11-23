@@ -41,7 +41,7 @@ function countDown() {
         if (currentQuestionIndex === 5) {
           clearInterval(timeInterval);
         } 
-        else if (timeLeft <= 0) {
+        else if (timeLeft <= 1) {
           clearInterval(timeInterval);
           timeLeft = 1;
           alert("Times Up!");
@@ -86,19 +86,19 @@ function selectAnswer (e) {
     answerClicked.classList.add("correct");
   } else { 
     answerClicked.classList.add("incorrect");
-    timeLeft -= 15;
+    timerMinus ();
   }
   nextBtn.innerText = "Next";
   nextBtn.style.display = "block";
 }
 
-nextBtn.addEventListener("click", ()=>{
-  if(currentQuestionIndex < questionArray.length) {
-  nextQuestion();
-  } else {
-    startGame ();
+function timerMinus () {
+  if (timeLeft >= 15 ) {
+    timeLeft -= 15;
+  } else { 
+    timeLeft = 1;
   }
-});
+}
 
 function nextQuestion () {
   currentQuestionIndex++;
@@ -113,9 +113,14 @@ function highScore () {
   hidePreviousQuestion ();
   questionEl.innerText = "Congratulations! You scored " + (timeLeft-1) + " Points!";
   formPage ();
-  nextBtn.innerText = "Play Again";
-  nextBtn.style.display = "block";
+  backBtn.style.display = "block";
 }
+
+nextBtn.addEventListener("click", ()=>{
+  if(currentQuestionIndex < questionArray.length) {
+  nextQuestion();
+  }
+});
 
 startBtn.addEventListener("click", startGame);
 
