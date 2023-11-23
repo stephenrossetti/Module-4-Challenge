@@ -94,10 +94,12 @@ section {
     align-items: left;
 }
 
+/* Displaying none here so it will not be on the homepage. Displayed via Javascript functions*/
 #questionContainer, #nameContainer {
     display: none;
 }
 
+/* Displaying none here so it will not be on the homepage. Displayed via Javascript functions*/
 #nameFormat {
     display: none;
 }
@@ -110,6 +112,7 @@ section {
     text-align: left;
 }
 
+/* Displaying none here so it will not be on the homepage. Displayed via Javascript functions*/
 #nextBtn, #backBtn {
     cursor: pointer;
     background-color: grey;
@@ -141,10 +144,12 @@ section {
     background-color: rgb(191, 152, 219);
 }
 
+/* Correct answers are displayed green when choosen*/
 .correct{
     background: rgb(151, 245, 142);
 }
 
+/* Wrong answers are displayed red when choosen*/
 .incorrect{
     background: rgb(245, 142, 142);
 }
