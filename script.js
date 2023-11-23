@@ -112,7 +112,7 @@ function nextQuestion () {
 function highScore () {
   hidePreviousQuestion ();
   if (timeLeft <= 0) {
-    questionEl.innerText = "Congratulations! You scored 0 Points!";
+    questionEl.innerText = "You need to study more! You scored 0 Points!";
   } else {
   questionEl.innerText = "Congratulations! You scored " + (timeLeft-1) + " Points!";
   }
@@ -129,40 +129,40 @@ nextBtn.addEventListener("click", ()=>{
 startBtn.addEventListener("click", startGame);
 
 let questionArray = [
-  { question: "Who is the greatest football player?",
+  { question: "How can a datatype be declared to be a constant type?",
     answers: [
-    {text: "Tom Brady", correct:true},
-    {text: "Peyton Manning", correct:false},
-    {text: "Jim Brown", correct:false},
-    {text: "Jerry Rice", correct:false}
+    {text: "const", correct:true},
+    {text: "var", correct:false},
+    {text: "let", correct:false},
+    {text: "constant", correct:false}
   ] },
-  { question: "Who is the greatest basketball player?",
+  { question: "In which HTML element, we put the JavaScript code?",
     answers: [
-    {text: "Larry Bird", correct:false},
-    {text: "Lebron James", correct:false},
-    {text: "Michael Jordan", correct:true},
-    {text: "Wilt Chamberlain", correct:false}
+    {text: "<javascript>...</javascript>", correct:false},
+    {text: "<js>...</js>", correct:false},
+    {text: "<script>...</script>", correct:true},
+    {text: "<css>...</css>", correct:false}
   ] },
-  { question: "Who is the greatest hockey player?",
+  { question: "Which JavaScript method is used to access an HTML element by id?",
     answers: [
-    {text: "Bobby Orr", correct:false},
-    {text: "Mario Lemieux", correct:false},
-    {text: "Gordie Howe", correct:false},
-    {text: "Wayne Gretzky", correct:true}
+    {text: "getElementById()", correct:false},
+    {text: "getElement(id)", correct:false},
+    {text: "elementById(id)", correct:false},
+    {text: "getElementById(id)", correct:true}
   ] },
-  { question: "Who is the greatest baseball player?",
+  { question: "Which JavaScript method is used to write on browser's console?",
     answers: [
-    {text: "Babe Ruth", correct:true},
-    {text: "Willie Mays", correct:false},
-    {text: "Hank Aaron", correct:false},
-    {text: "Ted Williams", correct:false}
+    {text: "console.log()", correct:true},
+    {text: "console.writeHTML()", correct:false},
+    {text: "console.output()", correct:false},
+    {text: "console.write()", correct:false}
   ] },
-  { question: "Who is the greatest soccer player?",
+  { question: "Which JavaScript method is used to call a function (a callback function) once for each array element?",
     answers: [
-    {text: "Pele", correct:false},
-    {text: "Lionel Messi", correct:true},
-    {text: "Diego Maradona", correct:false},
-    {text: "Cristiano Ronaldo", correct:false}
+    {text: "for()", correct:false},
+    {text: "forEach()", correct:true},
+    {text: "traverse()", correct:false},
+    {text: "foreach()", correct:false}
   ] },
 ];
 
