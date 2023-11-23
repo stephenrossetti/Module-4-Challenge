@@ -16,6 +16,7 @@ let scoreForm = document.getElementById("scoreForm");
 let scoreTextEl = document.getElementById("scoreText");
 let scoreList = document.getElementById("scoreList");
 let scoreContainer = document.getElementById("highScoreFormat");
+let leaderBoard = document.getElementById("leaderboard");
 let scores = [];
 
 function hideHomePage () {
@@ -205,9 +206,9 @@ highScoreBtn.addEventListener("click",getScores);
 
 function getScores () {
   clearInterval(timeInterval);
-  questionEl.innerText = "Official Leaderboard:";
   hidePreviousQuestion ();
   hideInputBox ();
+  questionEl.style.display = "none";
   scoreContainer.style.display = "block";
   backButton.style.display = "block";
 }
