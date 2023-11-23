@@ -171,7 +171,7 @@ function renderNames () {
   for (let j = 0; j < names.length; j++) {
     let name = names[j];
     let li = document.createElement("li");
-    li.textContent = name + " - " + timeLeft + "s";
+    li.textContent = name;
     li.setAttribute("data-index", j);
     nameList.appendChild(li);
     highScoreBtn.style.display = "block";
@@ -196,7 +196,7 @@ function hideInputBox () {
 
 nameForm.addEventListener("submit", function(event) {
   event.preventDefault();
-  let nameText = nameTextEl.value.trim();
+  let nameText = nameTextEl.value + " - " + timeLeft + " pts";
   if (nameText === "") {
     return;
   }
